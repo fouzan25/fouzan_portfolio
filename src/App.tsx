@@ -17,6 +17,7 @@ function App() {
   const [activeTab, setActiveTab] = useState("about.md");
   const [openTabs, setOpenTabs] = useState<TabInfo[]>(DEFAULT_TABS);
   const [closedTabs, setClosedTabs] = useState<TabInfo[]>([]);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   // Typewriter animation for navigation
   const { triggerAnimation } = useTypewriterAnimation({
@@ -144,16 +145,40 @@ function App() {
     [triggerAnimation]
   );
 
+  // Get current tab info for mobile header
+  const currentTab = openTabs.find(tab => tab.name === activeTab);
+  
   return (
     <div className="app">
+      {/* Mobile drawer toggle button */}
+      <button 
+        className="mobile-drawer-toggle"
+        onClick={() => setIsDrawerOpen(true)}
+        aria-label="Open navigation menu"
+      >
+        ☰
+      </button>
+      
       <div className="editor-container">
         <Sidebar
           activeTab={activeTab}
           closedTabs={closedTabs}
+          openTabs={openTabs}
           onTabReopen={handleTabReopen}
           onNavigate={handleNavigate}
+          onTabChange={setActiveTab}
+          isDrawerOpen={isDrawerOpen}
+          onDrawerClose={() => setIsDrawerOpen(false)}
         />
         <div className="main-area">
+          {/* Mobile header showing current tab */}
+          <div className="mobile-header">
+            <div className="mobile-header-title">
+              <span className="mobile-header-icon">{currentTab?.icon}</span>
+              <span>{currentTab?.name}</span>
+            </div>
+          </div>
+          
           <TabBar
             openTabs={openTabs}
             activeTab={activeTab}

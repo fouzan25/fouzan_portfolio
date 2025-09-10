@@ -241,17 +241,8 @@ const Contact: React.FC = () => {
         </div>
       </div>
 
-      <div style={{ padding: "40px 20px", textAlign: "center" }}>
-        <div
-          style={{
-            backgroundColor: "var(--bg-secondary)",
-            border: "1px solid var(--border-color)",
-            borderRadius: "12px",
-            padding: "40px",
-            maxWidth: "600px",
-            margin: "0 auto",
-          }}
-        >
+      <div className="contact-footer">
+        <div className="contact-container">
           <h2 style={{ color: "var(--purple-primary)", marginBottom: "20px" }}>
             Let's Build Something Amazing Together! 🚀
           </h2>
@@ -267,14 +258,7 @@ const Contact: React.FC = () => {
             fellow developers and creators.
           </p>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-              gap: "20px",
-              marginBottom: "30px",
-            }}
-          >
+          <div className="contact-links">
             <a
               href="mailto:fouzan.kv@example.com"
               style={{
